@@ -1,0 +1,998 @@
+\documentclass{ctexart}
+\usepackage{ctex}
+\usepackage{multirow}
+\usepackage{lipsum}
+\usepackage{makecell}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts,amssymb}
+\usepackage{subfigure}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{etoolbox}
+\usepackage{titletoc}
+\usepackage[titles,subfigure]{tocloft}
+\thispagestyle{empty}
+\usepackage{geometry}
+\geometry{left=3cm,right=3cm,top=2.5cm,bottom=2cm}
+\pagestyle{plain}	
+\usepackage{setspace}
+\usepackage{array}
+\graphicspath{{figures/}}	%图片在当前目录下的figures目录
+\date{}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{caption}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\newfontfamily\sectionef{Times New Roman}	% 设置Times New Roman字体
+	
+\titleformat{\section}{\zihao{-2}\heiti\sectionef\centering}{\centering\thesection\,}{0.8em}{}[\vspace{0.5em}]% 设置一级标题，中文字体为黑体，英文字体为Arial，字号为小二号,段前距离0.8，段后0.5
+\titleformat*{\subsection}{\zihao{4}\heiti\sectionef}	% 设置二级标题中文字体为黑体，英文字体为Arial字号为四号
+\titleformat*{\subsubsection}{\zihao{-4}\heiti\sectionef}	% 设置三级标题中文字体为黑体，英文字体为Arial字号为小四号
+%\setstretch{1.5}%1.5倍行间距
+\onehalfspacing%1.5倍行间距
+%设置目录格式
+\renewcommand{\contentsname}{ 目录}	
+\titlecontents{section}[1em]{\heiti\zihao{4}\vspace{10pt}}{\contentslabel{1em}}{\hspace*{-1em}}{~\titlerule*[0.25pc]{$.$}~\contentspage}% 设置一级标题
+\titlecontents{subsection}[4em]{\songti\zihao{-4}\vspace{7pt}}{\contentslabel{2em}}{}{~\titlerule*[0.25pc]{$.$}~\contentspage}% 设置二级标题
+\titlecontents{subsubsection}[7em]{\songti\zihao{-4}\vspace{5pt}}{\contentslabel{3em}}{}{~\titlerule*[0.25pc]{$.$}~\contentspage}% 设置三级标题
+
+
+
+%---------------------------cover.tex-------------------------------
+\thispagestyle{empty}						%  当前页不显示页码
+%------------------------abstract_cn.tex-------------------------------
+\setcounter{page}{1}						% 设置当前页页码编号从1开始计数
+\pagenumbering{Roman}						% 设置页码字体为大写罗马字体
+%----------------------------main.tex-------------------------------
+\setcounter{page}{1}						% 设置当前页页码编号从1开始计数
+\pagenumbering{arabic}						% 设置页码字体为小写阿拉伯字体
+
+\setcounter{secnumdepth}{3}		%增加编号深度
+\setcounter{tocdepth}{3}		%增加目录深度
+
+\numberwithin{equation}{section}%公式按章编号
+\numberwithin{figure}{section}%图按章编号
+\numberwithin{table}{section}%表按章编号
+
+\DeclareCaptionLabelSeparator{twospace}{\ ~}  
+\captionsetup[figure]{name={图},labelsep=twospace}
+\captionsetup[table]{name={表},labelsep=twospace}
+
+
+%定义摘要环境
+\newcommand{\cnabstractname}{\zihao{-2}摘\quad 要}	% 定义中文摘要环境
+\newenvironment{cnabstract}{
+	\par\small
+	\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
+	\vskip 2.5ex}{\par\vskip 2.5ex}
+
+
+\newcommand{\enabstractname}{\zihao{-2}\textbf{ABSTRACT}}	% 定义英文摘要环境
+\newenvironment{enabstract}{
+	\par\small
+	\mbox{}\hfill{\sectionef{\enabstractname}}\hfill\mbox{}\par 				% \sectionef：英文摘要使用Arial字体
+	\vskip 2.5ex}{\par\vskip 2.5ex} 
+
+
+
+
+\begin{document}
+	%\maketitle
+	%\include{cover}								% 封面
+	%\include{abstract_cn}						% 中文摘要
+	%\include{abstract_en}						% 英文摘要
+	%\include{contents}							% 目录
+	
+	\markboth{leftmark}{rightmark}
+	%\include{conclusion_reference_thanks}
+	
+	\heiti \zihao{5}\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad 学号 \underline {2019302120317}
+	
+	\heiti \zihao{5}\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad 密级 \underline {\qquad\qquad\qquad\quad}
+	
+	\begin{center}
+		\quad \\
+		%\quad \\
+		\vskip 1cm
+		\songti \zihao{1} 武汉大学本科毕业论文
+		\vskip 3.5cm
+		\heiti \zihao{2} 面向边缘设备的目标检测方法	
+	\end{center}
+	\vskip 2cm	
+	\begin{quotation}
+		\doublespacing
+		
+
+		\songti \zihao{-3}\setlength\parindent{7em}
+		
+		\quad
+		
+		院（系）名 称： 电子信息学院
+		
+		专 业 名 称：电子信息工程
+		
+		学生姓名：杨宁福
+		
+		指导教师：梅天灿\quad 副教授
+		\vskip 3cm
+		\centering
+		\songti \zihao{3}二〇二三年五月
+	\end{quotation}
+
+	\newpage
+	\thispagestyle{empty}
+	\begin{center}
+		\songti\zihao{2} \textbf{郑 \quad 重 \quad 声 \quad 明}
+	\end{center}
+	\vskip 2cm
+	\setstretch{1.55}\songti\zihao{4}
+	\qquad 本人呈交的学位论文，是在导师的指导下，独立进行研究工作所取得的成果，所有数据、图片资料真实可靠。尽我所知，除文中已经注明引用的内容外，本学位论文的研究成果不包含他人享有著作权的内容。对本论文所涉及的研究工作做出贡献的其他个人和集体，均已在文中以明确的方式标明。本学位论文的知识产权归属于培养单位。
+	
+	\vskip 5cm
+	\begin{center}
+		本人签名：	
+		\raisebox{-0.25\baselineskip}{\includegraphics[width=0.15\linewidth]{n}} \qquad\qquad\qquad 日期：\underline{\quad  2023年5月1日 \quad}
+	\end{center}
+	
+	\newpage
+	\setcounter{page}{1}
+	\pagenumbering{Roman}
+	\begin{cnabstract}{}
+		\songti \zihao{-4}
+		近年来，目标检测在自动驾驶、人脸识别、安防监控、医学影像等多个领域应用广泛。尽管深度网络模型在目标检测中取得了巨大成功，但是由于模型规模庞大，使得深度网络目标检测模型难以部署至边缘端设备进行实时检测任务。因此，本文的目标是提出一种面向边缘设备的目标检测方法，并对目标检测模型的性能进行测试和对比。
+		
+		首先，通过对目前主流的目标检测模型进行对比，选择了YOLOv8作为本文的目标检测模型，同时对YOLOv8网络结构中的C2f和Detect层进行修改后在PC端训练好模型，然后将其转换为NCNN格式并进行简化和优化，结合YOLOv8NCNN和YOLOXNCNN两个框架并修改相关参数将YOLOv8模型部署到Android端，实现了摄像头实时检测和图片检测。除此之外，通过修改部署框架，使多个不同数据集训练的YOLOv8模型可以同时部署在Android上。最后通过修改图片检测功能，使其在图片检测的选择图片时可以进行多选，并将检测结果(类别、置信度和预测框坐标x，y，w，h)以及检测时间输出到Android端文档路径下的txt文档。同时在COCO数据集的验证集中选取500张图片进行测试，将检测结果和检测时间传输到PC端，并将检测结果转化成JSON文件，在Python中利用pycocotools库进行mAP值的计算；通过对检测时间取平均值，可以得到模型对数据集的平均检测时间，并将该结果作为FPS值。
+		
+		最终可以得到本文的YOLOv8n模型在Android端使用CPU进行目标检测的FPS值为40.66，mAP值为20.06\%，使用GPU进行目标检测时的FPS值为23.62，mAP值为19.64\%；YOLOv8s模型在Android端使用CPU进行目标检测的FPS值为26.25，mAP值为28.07\%，使用GPU进行目标检测时的FPS值为19.50，mAP值为28.78\%；YOLOv8m模型在Android端使用CPU进行目标检测的FPS值为15.22，mAP值为35.10\%，使用GPU进行目标检测时的FPS值为16.22，mAP值为35.21\%。通过对比TensorFlow官方提供的模型以及YOLOv5模型在Android端的性能，YOLOv8模型在速度和精度上均有着非常不错的表现。
+		
+		\hspace{\fill}
+		
+		\noindent \heiti \zihao{-4}关键词：\songti \zihao{-4}目标检测；Android设备；YOLOv8模型；平均精度均值；帧率
+	\end{cnabstract}
+	
+	\newpage	
+	\begin{enabstract}{}
+		\zihao{-4}
+		In recent years, object detection has been widely used in various fields such as autonomous driving, face recognition, security monitoring, and medical imaging. Despite the huge success of deep network models in object detection, the large model size makes it difficult to deploy deep network object detection models to edge devices for real-time detection tasks. Therefore, the goal of this paper is to propose an object detection method for edge devices and test and compare the performance of object detection models.
+		
+		Firstly, after comparing the mainstream object detection models, YOLOv8 was selected as the object detection model for this paper. The C2f and Detect layers in the YOLOv8 network structure were modified and the model was trained on a PC. Then, it was converted to the NCNN format and simplified and optimized. The YOLOv8 model was deployed on Android by combining the YOLOv8NCNN and YOLOXNCNN frameworks and modifying the relevant parameters, enabling real-time detection and image detection. In addition, by modifying the deployment framework, multiple YOLOv8 models trained on different datasets can be deployed on Android at the same time.
+		
+		Finally, by modifying the image detection function, multiple selections can be made when selecting images for detection, and the detection results (category, confidence, and predicted bounding box coordinates x, y, w, h) and detection time are output to a txt file in the Android document path. 500 images were selected from the COCO dataset for testing, and the detection results and detection time were transmitted to a PC. The detection results were then converted into a JSON file, and the mAP value was calculated using the pycocotools library in Python. By taking the average of the detection time, the average detection time of the model on the dataset was obtained, which was used as the FPS value.
+		
+		In conclusion, the YOLOv8n model achieved an FPS value of 40.66 and an mAP value of 20.06\% when performing object detection using the CPU on Android. When using the GPU, the FPS value was 23.62 and the mAP value was 19.64\%. The YOLOv8s model achieved an FPS value of 26.25 and an mAP value of 28.07\% when performing object detection using the CPU on Android. When using the GPU, the FPS value was 19.50 and the mAP value was 28.78\%. The YOLOv8m model achieved an FPS value of 15.22 and an mAP value of 35.10\% when performing object detection using the CPU on Android. When using the GPU, the FPS value was 16.22 and the mAP value was 35.21\%. By comparing the performance of TensorFlow's official models and the YOLOv5 model on Android, the YOLOv8 model demonstrates excellent performance in terms of speed and accuracy.
+		
+	    \hspace{\fill}
+				
+		\noindent\textbf{Keywords:} Object Detection;Android device;YOLOv8 model;mAP;FPS
+	\end{enabstract}
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	\setcounter{page}{1}
+	\pagenumbering{arabic}
+	\setstretch{1.55}%设置行间距为23磅
+	\songti\zihao{-4}
+	\section{绪论}
+	目标检测是计算机视觉领域中的一个重要任务，它的主要目的是在图像或视频中自动识别和定位感兴趣的物体。近年来，随着物联网和移动计算的快速发展，越来越多的智能设备需要进行目标检测，这些设备包括智能手机、摄像头、智能门锁等边缘设备。
+	
+	%在边缘设备上进行目标检测部署的背景是因为边缘计算的兴起和智能设备的广泛应用。
+	
+	传统的目标检测算法通常需要大量的计算资源和存储空间，因此难以在边缘设备上实现实时的目标检测。但是，随着深度学习算法的发展，越来越多的轻量化目标检测算法被提出，这些算法可以在边缘设备上进行实时的目标检测，并具有较高的准确率和实用性。
+	
+%	另外，由于隐私和安全等方面的考虑，有些场景下需要将目标检测任务在本地设备上完成，而不是通过网络传输到云端进行处理。这时，在边缘设备上进行目标检测可以大大提高安全性和隐私保护。
+%	
+%
+%	目标检测，也叫目标提取，其任务是找出图像或视频中人们感兴趣的物体，并同时检测出它们的位置和大小。不同于图像分类任务，目标检测不仅要解决分类问题，还要解决定位问题。作为计算机视觉的基本问题之一，目标检测构成了许多其它视觉任务的基础，例如实例分割，图像标注和目标跟踪等等。同时，视频监控设备在安防监控中得到大量应用，利用目标检测技术自动提取监控图像中特定目标，对于建立安全高效的生产生活环境具有重要意义。尽管深度网络模型在目标检测中取得了巨大成功，但是由于模型规模庞大，使得深度网络目标检测模型难以部署至边缘端设备进行实时检测任务，而轻量化网络因可以牺牲一小部分检测精度使检测速度获得较大的提升受到了广泛关注。
+	\subsection{研究背景}
+	\subsubsection{目标检测的应用}
+	目标检测是计算机视觉中的一个重要任务，它的应用非常广泛，包括但不限于以下领域：
+	
+	1.自动驾驶：在自动驾驶汽车中，目标检测用于识别交通标志、行人、车辆和其他障碍物，以便自动驾驶系统能够做出相应的决策和行动。例如，深度学习模型 YOLO (You Only Look Once) 在自动驾驶中的应用被证明非常有效\textsuperscript{\cite{1}}。
+	
+	2.人脸识别：目标检测可以用于人脸检测和识别。在人脸检测中，目标检测模型可以在图像中自动识别人脸，从而实现自动化的人脸识别。文献\textsuperscript{\cite{2}}中提出的 MTCNN (Multitask Cascaded Convolutional Networks) 方法在人脸识别领域中取得了良好的表现。
+	
+	3.安防监控：目标检测可用于安防监控，以便在实时视频中识别出人、车、物等目标。这可以帮助安全人员及时发现异常情况，从而保护公众的安全。文献\textsuperscript{\cite{3}}中提出的 Faster R-CNN 模型已经被广泛用于安防监控中的物体识别。
+	
+	4.医学影像：在医学影像领域中，目标检测可用于识别和定位病变区域，以辅助医生进行疾病诊断。文献\textsuperscript{\cite{4}}中，作者使用卷积神经网络进行糖尿病视网膜病变和老年性黄斑变性的自动检测。
+	
+	总而言之，目标检测在计算机视觉领域中具有广泛的应用前景，可以帮助人们更好地利用图像和视频数据，提高自动化程度和工作效率。
+	\subsubsection{目标检测的计算部署}
+	对于目标检测应用的部署而言，由于其根本的深度神经网络需要大量的计算资源，所以目标检测的推理计算多数在云端数据中心部署\textsuperscript{\cite{5}}。云端部署指的是将目标检测算法部署在云服务器上进行计算和处理。
+	
+	但是随着边缘设备的不断发展，其计算能力也在不断增强，越来越多的目标检测已在边缘设备上部署。
+	边缘设备部署的优点包括：
+	
+	1.低延迟。将目标检测算法部署在边缘设备上，可以避免数据传输时延，能够实现更低的响应延迟，提高用户体验。
+	
+	2.高安全性。由于数据在本地进行处理，可以避免数据在网络传输过程中被窃取或篡改的风险，提高数据的安全性。
+	
+	3.节省带宽。将目标检测算法部署在边缘设备上，可以避免数据在网络传输过程中占用大量的带宽，降低了网络传输的负担。
+	
+	总体来说，云端部署适合处理大规模的图像数据，同时也适合需要灵活扩展计算资源的业务场景；而边缘设备部署适合对数据响应延迟和数据安全性要求较高的业务场景，同时也适合需要节省带宽和减少网络传输负担的场景。
+	
+	\subsubsection{目标检测的计算量庞大}
+	由于目标检测需要在大量的图像中进行目标检测和定位，因此需要处理大量的图像数据，并对每个图像进行多次卷积和池化操作。这些计算操作需要大量的计算资源和时间，而且在实际应用中，往往需要在有限的时间和资源内完成目标检测任务，因此需要对目标检测算法进行计算优化。
+	
+	\subsection{国内外研究现状}
+	目标检测的发展可以分为两个阶段：传统目标检测算法和基于深度学习的目标检测算法。传统的目标检测方法包括基于特征提取和分类器的方法，这些方法在小规模数据集上表现良好，但在大规模数据集上性能较差。
+	随着深度学习技术的不断发展，基于深度学习的目标检测方法也随之出现。最初的方法是基于卷积神经网络的物体检测方法，比如R-CNN\textsuperscript{\cite{article2}}首次使用深度模型提取图像特征，以49.6\%的准确率开创了检测算法的新时代。随后 Fast R-CNN\textsuperscript{\cite{article3}}、Faster R-CNN\textsuperscript{\cite{article4}}、Mask R-CNN\textsuperscript{\cite{article5}}等相继被提出，这些网络均属于二阶段(two stage)方法，需要在检测前生成一系列候选框，再对这些候选框进行分类和位置回归，计算量较大，无法满足实时检测的要求。最终一阶段(one stage)方法的出现又将检测领域带到一个新的高度，一阶段方法以YOLO\textsuperscript{\cite{article6}}\textsuperscript{\cite{article7}}\textsuperscript{\cite{article8}}和SSD\textsuperscript{\cite{article9}}为代表，它们通过一个神经网络直接对整张图片进行分类预测和位置回归，相较于二阶段方法准确率较低，但是速度更快，可以做到真正意义上的实时效果。
+	
+	随着着物联网和人工智能的迅猛发展，将深度学习网络部署到边缘设备中已经成为研究的热点之一。
+	边缘设备的深度学习网络部署研究现状涉及到深度学习模型设计、模型压缩和模型部署等多个方面，以下将从这些方面介绍目前的研究进展和技术趋势。
+	
+	1.模型设计
+	
+	针对边缘设备的深度学习网络设计，目前主要的思路是通过精心设计网络结构，提高模型的计算效率和存储效率。例如，一些研究者提出了基于网络宽度和深度的模型设计方法，例如MobileNet\textsuperscript{\cite{6}}、ShuffleNet\textsuperscript{\cite{7}}等，这些模型通过减少模型参数和计算量，实现了在边缘设备上高效运行的目标检测模型。
+	
+	2.模型压缩
+	
+	边缘设备计算能力和存储空间有限，因此需要通过模型压缩来减少模型大小和计算量，提高模型在边缘设备上的运行效率。常用的模型压缩技术包括剪枝、量化和知识蒸馏。其中，剪枝技术通过删除冗余的神经元和连接来压缩模型 \textsuperscript{\cite{8}}。量化技术通过减少参数的表示精度来减小模型大小，如8位整型量化\textsuperscript{\cite{9}}。而知识蒸馏技术则通过利用大型网络的知识来指导小型网络的训练，从而实现模型压缩\textsuperscript{\cite{10}}。
+	
+	3.模型部署
+	
+	模型部署是将训练好的深度学习模型部署到边缘设备上，实现目标检测任务的关键环节。目前常用的模型部署技术包括离线部署和在线部署。离线部署是将训练好的模型编译成可执行文件，部署到边缘设备上，可以实现较高的运行效率；在线部署是通过将模型部署在云端服务器上，将数据传输到云端进行处理后再返回结果，可以实现更高的灵活性和可扩展性。近年来，一些开源工具和平台也推出了针对边缘设备深度学习网络部署的工具和平台，例如TensorFlow Lite、Caffe2、MXNet、Keras以及NCNN\textsuperscript{\cite{15}}等。这些框架和工具可以使模型在边缘设备上快速运行，并且可以自动处理一些部署相关的细节问题，例如模型转换、加速等。同时，也可以通过针对具体设备的定制化优化来实现模型部署，例如MobileNet\textsuperscript{\cite{16}}、ShuffleNet\textsuperscript{\cite{17}}、Tiny-YOLO\textsuperscript{\cite{18}}等。这些模型都是通过对特定设备的性能和限制进行优化，从而实现在边缘设备上高效运行。
+	
+	总而言之，边缘设备的深度学习网络部署研究现状包括模型设计、模型压缩和模型部署等多个方面，研究者通过提出新的模型结构、模型压缩技术和模型部署方案等，不断提高模型在边缘设备上的运行效率和精度
+	
+	\subsection{研究内容}
+	
+	本文主要研究面向边缘设备的目标检测方法，而Android作为一种非常常见的边缘设备，因此本文的主要目标是研究面向Android设备的目标检测的相关技术。本文的研究内容主要由以下三点组成。
+	
+	1.获取可部署在移动端的目标检测模型：通过对目前主流的目标检测模型进行对比，选择YOLOv8作为本文的目标检测模型，同时因为选择了NCNN作为模型在Android端的部署框架。为了模型在NCNN框架上部署后能够正常检测，需要对YOLOv8网络结构中的C2f和Detect层进行修改，然后利用修改后的模型来进行训练自己的目标检测模型；在PC端训练好YOLOv8模型后，需要将其从Pytorch格式转换为ONNX格式并对转换后的模型利用ONNXsim工具对其进行简化，去除冗余，然后利用onnx2ncnn工具将模型从ONNX格式转换成NCNN格式，最后利用ncnnoptimize工具将模型进行优化，并输出为fp16半精度浮点数格式。
+	
+	2.模型部署:由于YOLOv8NCNN框架只实现了摄像头实时检测功能，没有图片检测功能，在后续无法测试部署到Android端的目标检测模型的mAP值以及不同模型对于处理单张图片的速度和精度对比，而YOLOXNCNN框架实现了图片检测，因此本文结合上述两个框架将YOLOv8部署到Android端，并实现了摄像头实时检测、图片检测以及检测结果保存功能。同时，通过修改置信度阈值以及NMS的阈值使模型达到了一个比较好的检测效果。最后，通过修改框架，可以使多个不同数据集训练的YOLOv8模型同时部署在Android上，在APP的用户界面中通过下拉栏选择对应模型进行检测。
+	
+	3.模型测试：通过修改图片检测功能，使其在图片检测的选择图片时可以进行多选，至多选择100张图片，并将检测结果(类别、置信度和预测框坐标x，y，w，h)以及检测时间输出到Android端文档路径下的txt文档，检测结果的文档名称为检测图片的名称，检测时间保存至run\_time.txt文档中。同时在COCO数据集的验证集中选取500张图片进行测试，将500个保存着检测结果的txt文档和记录每次检测所需时间的run\_time.txt文档传输到PC端，并将检测结果转化成JSON文件，在Python中利用pycocotools库进行mAP值的计算。最后通过对检测时间取平均值，可以得到模型对数据集的平均检测时间，并将该结果作为FPS值。
+	
+	\subsection{论文的组织结构}
+	关于本文的组织结构，说明如下。
+	
+	第一章，通过研究背景、国内外研究现状、研究内容三个方面说
+	明了本文的主旨。研究背景中说明了目标检测应用和在边缘设备上部署目
+	标检测模型的优势以及所面临的挑战。国内外研究现状中阐述了边缘计算和目标检测技术的目前技
+	术水平。研究内容中概述了本文要研究的面向边缘设备的目标检测的技术内容。
+	此外还介绍了本文的组织结构。
+	
+	第二章，主要由五部分内容组成。一，对目标检测的主流算法进行比较分析，并详细的介绍了YOLOv8算法；
+	二，介绍了YOLOv8工程使用的深度学习框架PyTorch；三，对实验过程中的相关模型格式及其转换进行了介绍；四，对目前一些深度学习网络模型在Android设备上的部署框架进行对比，并详细的介绍了NCNN框架；五，介绍了目标检测中IOU的含义和计算以及目标检测模型的性能指标mAP和FPS。
+
+	第三章，首先从总体实验流程的角度说明本文在Android端实现目标检测并设计算法对其性能进行测试
+	的技术路线，然后对研究内容的三个方面进行了详细的介绍。
+
+	第四章，首先从检测速度和检测精度两个方面，测试并对比了YOLOv8模型在Android端的性能；然后展示了YOLOv8模型部署到Android端进行实时检测和图片检测的效果，并对相关结果进行了分析；最后展示了多模型检测的效果，同时说明了该功能的应用场景。
+
+%	\subsection{本章小结}
+%	本章主要介绍了本文的研究背景、研究内容和论文的组织结构。第 1.1 节研究背景
+%	中，通过对目标检测的广泛应用、计算部署方式和计算量庞大的三个方面说明了在边缘
+%	设备上部署目标检测所面临的挑战；第 1.2 节国内外研究现状中分别介绍了目标检测算法和深度学习网络模型在边缘设备上的部署的发展以及现有的一些研究方法；第 1.3 节研究内容中，从五个方面：模型训练、模型转换、模型剪枝和优化、模型部署以及模型测试，概述了本文的主要工作；第 1.4 节论文组织结构中，说明了每个章节的主旨和目的，从宏观角度阐述了本论文的逻辑。
+	
+	\section{相关技术}
+	\subsection{目标检测的主流模型}
+	\subsubsection{二阶段方法}
+	R-CNN、Fast R-CNN、Faster R-CNN 和 Mask R-CNN 都是深度学习中用于目标检测的二阶段方法，其中R-CNN（Region-based Convolutional Neural Network）是一个基于区域的卷积神经网络算法，它通过对图像中每个区域进行分类来实现目标检测。R-CNN 的缺点是计算量非常大，因为需要对每个区域进行独立的卷积计算，因此速度比较慢；Fast R-CNN 是对 R-CNN 的改进，它使用了全卷积网络来替代 R-CNN 中的卷积操作，从而减少了计算量。Fast R-CNN 同时也引入了 RoI 池化层，可以有效地处理不同大小的区域，提高了检测速度和准确率；Faster R-CNN 是对 Fast R-CNN 的改进，它引入了 Region Proposal Network（RPN）来代替 Selective Search 等方法，从而实现了端到端的训练，使得检测速度更快，同时准确率也有所提高；Mask R-CNN 是对 Faster R-CNN 的改进，它在 Faster R-CNN 的基础上增加了一个分支网络来生成每个检测框内部的像素级别的语义分割，从而实现了目标检测和语义分割的联合训练，进一步提高了模型的精度。总的来说，这些算法都是基于卷积神经网络的目标检测算法，它们在不同方面进行了改进，从而逐步提高了检测速度和准确率，为目标检测任务的应用提供了有力的支持。
+	
+	但是二阶段目标检测方法通常包括区域提取和分类两个步骤，需要进行多次计算和复杂的图像处理。与之相比，一阶段目标检测方法通常只需要一次前向传递就可以完成目标检测，因此其速度更快，更适合在边缘设备上部署。
+	
+	\subsubsection{一阶段方法}
+	RetinaNet\textsuperscript{\cite{26}}、SSD和YOLO都是现在流行的基于深度学习的一阶段目标检测算法。
+	
+	RetinaNet是由FAIR（Facebook AI Research）提出的一种基于单阈值的目标检测模型，它通过引入Focal Loss解决了目标检测中正负样本不平衡的问题。RetinaNet将FPN网络与特征金字塔的思想相结合，同时在每个金字塔层次上引入两个分支，一个用于回归边界框，另一个用于预测物体的类别，从而实现了高精度的目标检测。
+	
+	SSD（Single Shot MultiBox Detector）由 Google 在 2016 年提出，其主要思想是在输入图像中同时预测出多个目标框，并对这些目标框进行分类和回归。SSD的特点是快速、准确，并且只需要一个网络即可完成整个目标检测过程。在SSD中，输入图像被经过多层卷积和池化之后，通过多个不同大小的卷积核进行特征提取，从而得到多个特征图。接着，每个特征图中的每个位置都会生成若干个预测框，预测框的数量和大小取决于特征图的大小和比例。
+	
+	YOLO由 Joseph Redmon 在 2015 年提出，其主要思想也是在输入图像中同时预测出多个目标框，并对这些目标框进行分类和回归。与SSD不同的是，YOLO是通过单个卷积神经网络来实现目标检测，这个网络会同时输出目标的类别和位置。在YOLO中，输入图像会被分成若干个网格，每个网格负责预测包含在其内部的目标框。YOLO还使用了一种特殊的损失函数，可以同时考虑目标框的位置和类别信息，从而在目标检测中取得了不错的效果。
+	
+	虽然RetinaNet在目标检测精度方面表现非常出色，但它需要更多的计算资源和更大的模型大小。因此，在计算资源较为有限的Android设备上部署可能会遇到性能瓶颈。SSD在处理小物体时表现较好，并且具有较好的可扩展性，可以处理多尺度输入。相比之下，YOLO系列最新的算法YOLOv8在速度和准确度方面表现更出色，尤其是在大目标检测方面。同时，YOLOv8采用了较轻量化的模型结构，因此其模型大小相对较小，更适合在资源受限的Android设备上使用。
+	
+	\subsubsection{YOLOv8算法}
+	YOLOv8 是一个 SOTA 模型，它建立在以前 YOLO 版本的成功基础上，并引入了新的功能和改进，以进一步提升性能和灵活性。具体创新包括一个新的骨干网络、一个新的 Ancher-Free 检测头和一个新的损失函数。
+	
+	首先，YOLOv8的检测策略仍是分而治之，即将一幅图像分成 n×n个网格（grid cell），每个grid cell要预测 B 个边界框(bounding box),每个 bounding box 要预测框的位置和大小 (x, y, w, h) 以及置信度confidence 共5个值，同时每个grid cell还要预测一个类别信息，即每个类别的概率，用grid cell的类别概率，乘以grid cell自己生成的bounding box的置信度，就获得该bounding box对应各个类别的概率。最后在后处理中使用阈值过滤和非极大值抑制（NMS）将类别概率小于设定阈值的bounding box和与类别概率较大的bounding box重合度高于设定阈值的bounding box剔除，可以得到最后的检测结果。
+	
+	然后是YOLOv8的网络结构，如下图\ref{t21}所示。
+	\begin{figure}[h]
+		\centering
+		\includegraphics [width=0.9\linewidth]{21}
+		\caption{YOLOv8网络结构图}
+		\label{t21}
+	\end{figure}
+	
+	YOLOv8的骨干网络和 Neck 部分参考了 YOLOv7 ELAN 设计思想，将 YOLOv5 的 C3 结构换成了梯度流更丰富的 C2f 结构，并对不同尺度模型调整了不同的通道数。除此之外还将YOLOv5的Coupled-Head换成了目前主流的Decoupled-Head。
+	
+	其次，YOLOv8 从 Anchor-Based 换成了 Anchor-Free，减少了预测框的数量的同时也加速了NMS非极大值抑制 。
+	
+	最后，YOLOv8的损失函数抛弃了以往的IOU匹配或者单边比例的分配方式，而是使用了Task-Aligned Assigner正负样本匹配方式。同时，Loss 计算抛弃了YOLOv5的 Obj 分支，只包括 2 个分支： Cls分类和Bbox回归分支，其中分类分支依然采用 BCE Loss，而回归分支使用了 Distribution Focal Loss的同时还使用了 CIoU Loss。3 个 Loss 采用一定权重比例加权即可。
+	
+	%https://blog.csdn.net/zyw2002/article/details/128732494
+	
+%	\subsection{模型轻量化方法}
+%	模型轻量化方法可以分为网络结构轻量化和模型压缩两种。它们的目标都是减小深度神经网络模型的计算量、存储量和参数量，从而使得这些模型可以在计算资源受限的环境中运行。
+%	\subsubsection{网络结构轻量化设计}
+%	网络结构轻量化主要关注如何设计轻量化的网络结构，以达到减少计算量和参数量的目的。其中包括使用轻量化的卷积操作、减少通道数、采用残差连接等方法来设计轻量化的网络结构。下面是几种常见的轻量化网络结构：
+%	
+%	1.ShuffleNet，它主要通过使用组卷积和通道重排操作来减少计算量和模型大小。ShuffleNet引入了shuffle操作，该操作将输入的特征图分成多个组，对每个组进行卷积操作，然后通过通道重排操作将不同组的特征图合并在一起。这样可以降低计算量和参数量，同时保持相对较高的准确性。
+%	
+%	2.MobileNets，它通过使用深度可分离卷积来减少计算量和参数量。深度可分离卷积将标准卷积分成两个步骤：深度卷积和逐点卷积。深度卷积仅在每个通道内进行卷积操作，而逐点卷积仅在所有通道之间执行卷积操作。这样可以大大减少计算量和参数量，并保持较高的准确性。
+%	
+%	3.GhostNet，它通过使用ghost模块来减少计算量和参数量。Ghost模块将输入的特征图分成多个子特征图，然后对每个子特征图进行卷积操作。在每个卷积操作之后，使用组卷积将子特征图合并在一起。这样可以降低计算量和参数量，并保持较高的准确性。
+%	
+%	4.FBNet，它通过使用网络搜索和自动化设计方法来生成高效的网络结构。FBNet使用FBNet搜索算法来搜索适合特定计算资源限制的网络结构。FBNet搜索算法可以自动确定网络中的卷积核大小，通道数和层数等超参数，以优化网络结构的性能。
+%
+%	
+%	\subsubsection{模型压缩}
+%	模型压缩主要关注如何通过压缩模型的参数和特征图来减少模型的大小。其中包括权重剪枝、量化和编码压缩等方法。权重剪枝通过删除不重要的权重来减小模型的大小和计算量；量化通过减少权重和激活值的位数来减少模型的存储量和计算量；编码压缩通过使用压缩算法来减少模型的存储量。
+%	
+%	
+%	\subsubsection{总结分析}
+%	总之，网络结构轻量化和模型压缩都是模型轻量化的有效方法，它们可以使深度神经网络模型在计算资源受限的环境中运行，并且保持相对较高的性能准确度。但是由于YOLOv8算法本身就使用了轻量化的网络结构，因此本文只需要对训练好的YOLOv8模型进行模型压缩来进行模型轻量化。
+	
+	\subsection{深度学习框架}
+	YOLOv8使用的深度学习框架是PyTorch。PyTorch由Facebook开发并维护。它的特点是易于使用、灵活性高、性能强大、支持动态图和静态图，以及可扩展性强。
+	
+	PyTorch的核心是一个多维数组库，称为Tensor（张量），它与NumPy的数组类似。PyTorch还支持自动求导（autograd）功能，这使得编写神经网络变得更加容易和直观。用户可以通过定义计算图来实现自动求导，这使得训练深度学习模型变得更加简单和高效。
+	
+	PyTorch支持动态图和静态图两种模式，可以根据用户的需求进行选择。动态图模式适用于灵活的计算需求，用户可以使用标准的Python控制流（例如if语句和循环）来构建计算图。静态图模式适用于需要高度优化的计算需求，用户可以使用PyTorch的JIT编译器来将计算图编译成高效的机器码。
+	
+	此外，PyTorch还提供了许多高级功能，例如分布式训练、GPU加速、模型保存和加载、可视化工具等。这些功能使得PyTorch成为一个全面的机器学习框架，能够满足各种复杂的计算需求。
+	
+	总而言之，PyTorch是一个功能强大、易于使用、灵活性高的机器学习框架，可以满足各种不同的计算需求。
+
+	\subsection{模型格式介绍与转换}
+	\subsubsection{PyTorch}
+	PyTorch的.pt文件是一种用于保存PyTorch训练好的神经网络模型的二进制文件格式。它可以保存模型的架构和参数，并可以在不同的平台和设备之间移植，无需重新训练模型。
+	
+	.pt文件中包含了以下内容：
+	
+	1.模型的架构：即神经网络的结构，包括各个层的类型、输入输出维度、激活函数等信息。这部分信息通常被保存在模型定义的Python代码中，也可以通过PyTorch提供的保存和加载接口保存在.pt文件中。
+	
+	2.模型的参数：即神经网络中各个层的权重和偏置等可训练参数。这些参数在训练过程中被优化，保存在.pt文件中，以便在推理阶段使用。
+	
+	3.计算图信息：由于PyTorch使用动态计算图机制，即在每次前向传播时动态构建计算图，因此.pt文件中也包含了完整的计算图信息。这部分信息在模型训练和调试中非常有用，可以用于分析和调试模型。
+	
+%	.pt文件的优点如下：
+%	
+%	可移植性：由于.pt文件包含了完整的模型信息，可以在不同的平台和设备之间移植，无需重新训练模型。
+%	
+%	灵活性：通过加载.pt文件，可以方便地调用和使用已经训练好的模型，这对于模型的共享、调整和优化非常有用。
+%	
+%	安全性：由于.pt文件可以加密或者签名，可以保证模型的安全性和完整性，这对于一些商业和安全场景非常有用。
+%	
+%	易于调试：通过加载.pt文件，可以方便地进行模型分析和调试，例如检查模型的参数、梯度、计算图等信息，这对于模型的调整和优化非常有用。
+	
+	总而言之，PyTorch的.pt文件格式是一种功能强大的模型保存格式，它可以保存模型的架构、参数、计算图等完整信息，并且具有可移植性、灵活性、安全性和易于调试等特点，为模型的部署、共享和调整提供了很大的便利性。同时，通过结合PyTorch提供的各种工具和技术，可以进一步提高模型的性能和效率。
+	
+	\subsubsection{ONNX}
+	ONNX（Open Neural Network Exchange）是一种用于表示深度学习模型的开放式标准格式。它是由微软和Facebook等公司联合推出的，旨在提高深度学习模型的可移植性和互操作性。
+	
+	ONNX的设计初衷是让深度学习框架之间可以共享模型，并且可以在不同框架之间进行迁移。它采用了一种基于计算图的方式来表示模型，每个节点代表一个操作，如卷积、池化、激活函数等。节点之间的边表示数据流动的方向和依赖关系。这种基于计算图的方式，使得ONNX格式可以在多种深度学习框架之间共享模型，包括TensorFlow、PyTorch、Caffe、CNTK等。
+	
+	ONNX格式还支持多种硬件加速库，包括Intel MKL-DNN、nGraph、TensorRT等，可以在不同硬件平台上实现加速推理。同时，ONNX格式也支持对模型进行优化和转换，以减小模型的大小、提高推理效率等。这包括剪枝、量化、融合等多种优化技术，使得模型可以更好地适应不同的硬件环境和应用场景。
+	
+	总而言之，ONNX格式是一个具有可移植性、互操作性、优化性和开放性的深度学习模型表示格式，它可以在不同的框架和平台之间共享模型，并可以实现多种硬件加速和优化技术。通过使用ONNX格式，用户可以更好地满足不同的应用需求和硬件环境，提高模型的效率和性能。
+	
+	\subsubsection{NCNN}
+	NCNN（Nihao Caffe Neural Network）是一个基于C++编写的深度学习框架，专门针对移动设备和嵌入式设备进行优化。NCNN格式是NCNN框架所支持的一种模型格式，NCNN格式的模型文件包含了模型的结构和参数，以及模型所需的所有计算操作。NCNN框架将模型文件转换为高效的C++代码，并在移动设备和嵌入式设备上进行高效推理。
+	
+	NCNN格式的模型文件通常由两个文件组成：.param和.bin文件。.param文件包含了模型的结构信息，而.bin文件包含了模型的参数。
+	
+	.param文件是一个文本文件，其内容描述了模型的网络结构，包括输入输出尺寸、卷积核大小、卷积核数量、池化大小、激活函数类型等。这些信息可以帮助NCNN框架正确地构建模型，并在推理时对输入数据进行正确的处理。.param文件的格式类似于C++的代码，使用了NCNN框架提供的结构体和函数。
+	
+	.bin文件是一个二进制文件，其内容描述了模型的参数，包括卷积核权重、偏置、归一化参数等。这些参数是在训练模型时得到的，可以直接用于模型推理。.bin文件的格式是按照数据类型和存储顺序进行排列的。
+	
+	在使用NCNN框架进行模型推理时，首先需要读取.param文件，解析出模型的结构信息，并根据这些信息构建模型。然后读取.bin文件，将其中的参数加载到模型中，使得模型能够进行推理。因此，.param文件和.bin文件是NCNN模型文件中不可缺少的两个部分，两者配合使用，才能构建出一个完整的NCNN模型。
+	
+	总的来说，NCNN格式是一个非常适合在移动设备和嵌入式设备上进行深度学习推理的模型格式。它具有高效性、轻量级、可移植性和灵活性等特点，可以适应不同的应用场景和需求。
+	
+%	使用NCNN格式的模型文件可以在移动设备和嵌入式设备上进行高效的推理，大大提高了深度学习模型在这些设备上的应用效率。同时，NCNN格式的模型文件非常小，非常适合在存储容量较小的设备上使用。
+	\subsubsection{模型格式转换}
+	本文需要将YOLOv8网络模型从PyTorch格式转换成ONNX格式，再由ONNX格式转换成NCNN格式。一般来说，模型格式的转换包括计算图的转换和参数的转换两个方面。比如将模型从PyTorch格式转换成ONNX格式需要进行以下两步：
+	
+	1.PyTorch模型的计算图转换为ONNX计算图。在PyTorch中，每个模型都有一个计算图，描述了模型的结构和参数，包括计算图中的节点和边，节点表示计算操作，边表示计算操作之间的数据流动。在转换为ONNX格式时，需要将PyTorch计算图转换为ONNX计算图。
+	
+	2.PyTorch模型的参数转换为ONNX参数。PyTorch模型的参数通常以张量的形式存储，而ONNX模型的参数通常以二进制文件的形式存储。在转换过程中，需要将PyTorch模型的参数转换为ONNX参数，并将其存储为二进制文件。
+	
+	最后，ONNX模型转换为NCNN模型的基本原理也是将ONNX模型的计算图转换为NCNN模型的计算图，并将模型参数转换为NCNN模型的.param和.bin文件。
+	
+	\subsection{深度网络模型在Android设备上的部署框架}
+	\subsubsection{框架介绍}
+	深度网络模型在Android设备上的部署框架有很多种，比如PyTorch Mobile、TensorFlow Lite、NetEase Computer Neural Network等。
+	
+	PyTorch Mobile是PyTorch框架的移动端版本。它允许将训练好的PyTorch模型导出到移动设备上，并在本地运行。PyTorch Mobile提供了一个轻量级的API，可用于在移动设备上加载和执行模型，同时保持高度的模块化和可扩展性。
+	
+	TensorFlow Lite是Google开发的TensorFlow框架的移动端版本。TFLite支持在移动设备、嵌入式设备和IoT设备上部署深度学习模型。与PyTorch Mobile一样，TFLite也允许将训练好的TensorFlow模型导出到移动设备上，并在本地运行。TFLite还提供了一些工具，可以帮助用户压缩模型大小，提高模型性能，并优化模型以在特定硬件上运行。
+	
+	而NetEase Computer Neural Network(NCNN)是一个由腾讯AI平台部开发的高性能深度学习框架，主要面向ARM架构的移动设备、嵌入式设备以及服务器端的高性能计算。与PyTorch Mobile和TensorFlow Lite相比，NCNN的优点包括：
+	
+	1.高性能：NCNN框架在ARM架构下进行了高度优化，能够利用ARM平台上的硬件加速器（如NEON、Vulkan）以及多线程技术，实现高效的计算。
+	
+	2.轻量化：NCNN框架采用了轻量级的设计思路，可以非常有效地压缩模型大小。NCNN提供了一些工具，可以对模型进行裁剪、量化等操作，使得模型更加适用于嵌入式设备等资源受限的环境。
+	
+	3.跨平台支持：NCNN框架支持多种操作系统，包括Android、iOS、Linux等，同时还支持多种编程语言，包括C++、Python、Java等。
+	
+	4.易用性：NCNN框架的API设计简单易用，可以快速地部署和运行深度学习模型。同时，NCNN还提供了一些示例程序，方便用户学习和使用。
+	
+	总体来说，NCNN框架是一个高性能、轻量化、跨平台的深度学习框架，适用于移动设备、嵌入式设备以及服务器端的高性能计算。相比于PyTorch Mobile和TensorFlow Lite，NCNN在ARM架构下有着更高的性能和更小的模型大小，同时也更加灵活和易于使用。
+	
+	由于YOLOv8模型需要高性能的硬件支持，而NCNN在移动设备和嵌入式设备上的性能比PyTorch Mobile和TensorFlow Lite更优秀。因此，使用NCNN来部署YOLOv8模型可以提供更快的推理速度和更高的精度。同时，NCNN的灵活性比PyTorch Mobile和TensorFlow Lite更高。NCNN支持多种模型和算法，并且可以自由定制网络结构和推理流程，可以更加精细地控制模型的大小和性能。此外，NCNN提供了图形用户界面和C++接口，可以更方便地进行模型部署和优化。因此，本文选择使用NCNN框架来在Android端部署YOLOv8模型。
+	
+	\subsubsection{部署流程}
+	NCNN框架的部署流程通常包括以下步骤：
+	
+	1.安装依赖：在部署NCNN之前，需要先安装相关的依赖库和工具链。具体的依赖库和工具链可能因为不同的操作系统和硬件平台而有所不同。
+	
+	2.编译NCNN：在安装完依赖库和工具链后，需要编译NCNN框架。NCNN提供了基于CMake的编译脚本，可以根据用户的需求自定义编译选项，例如选择使用哪些硬件加速器或者关闭不必要的模块等。
+	
+	3.导入模型：在编译好NCNN框架之后，需要将训练好的深度学习模型转换为NCNN格式并导入到NCNN中。NCNN支持多种深度学习框架的模型转换，包括Caffe、ONNX、TensorFlow等。
+	
+	4.部署模型：一旦将模型导入到NCNN中，就可以在目标设备上部署模型。在移动设备和嵌入式设备上，可以使用NCNN提供的C++ API调用模型，实现高效的预测和推理。
+	
+	\subsection{目标检测模型的性能指标}
+	\subsubsection{IOU}
+	在目标检测中，IOU（Intersection over Union，交并比）是一种用来评估模型检测结果和真实标签之间重叠程度的指标。该指标通常用来评估两个边界框之间的重叠程度，以确定它们是否表示同一个物体。
+	
+	IOU的计算方法是：将两个边界框的交集面积除以它们的并集面积。假设第一个边界框的面积为A，第二个边界框的面积为B，它们的交集面积为C，则IOU可以表示为：
+		\begin{align}
+			IOU = \frac{C}{A + B - C}
+		\end{align}
+	IOU的取值范围为0到1之间，其中0表示两个边界框没有重叠，1表示两个边界框完全重合。一般来说，如果两个边界框的IOU值大于一个预先设定的阈值，则可以将它们视为同一个物体。
+	
+	在目标检测任务中，模型的预测结果和真实标签之间的IOU通常被用来评估模型的性能，并用来计算精确度、召回率等指标。同时，IOU还被用来确定非极大值抑制的阈值，以去除重复的检测结果
+	
+	\subsubsection{精度指标mAP}
+	在目标检测任务中，模型需要在图像中定位和识别出多个不同类别的物体。而mAP(Mean Average Precision,平均精度均值)就是用来衡量模型在这个任务中的整体性能。通过计算每个类别的 AP 并取平均值，mAP 可以反映模型对不同类别的检测效果，并且考虑到了检测框的数量和位置等因素，是一种比较客观的评价方式。因此，在目标检测领域，mAP 是一个广泛使用的指标，它被用于评估算法的性能，并且被用作比较不同算法之间的效果。它的计算方法可以分为以下几个步骤：
+	
+%	对于每个类别，计算AP值：
+%	\begin{align}
+%		AP=\sum_n (R_n-R_{n-1})P_n
+%	\end{align}
+%	
+%	其中，$P_n$ 是当召回率为 $R_n$ 时的精度值，$R_n$ 是第 $n$ 个召回率，而 $n$ 是正样本的数量。这个公式可以看作是对精度-召回曲线下的面积进行近似计算，其中，每个点的纵坐标是精度 $P_n$，横坐标是召回率 $R_n - R_{n-1}$ 的增量。$R_{n-1}$ 是前一个召回率，使得 $P_n$ 为其对应的精度。
+%	
+%	在计算AP时，需要先计算精度-召回曲线，并根据曲线上的点逐个计算 $P_n$ 和 $R_n$。对于 $P_n$ 的计算，可以使用最大精度法：在某个召回率的时候，将该召回率之后的所有样本都认为是正样本，并计算出在这个条件下的最大精度值；对于 $R_n$ 的计算，直接使用当前召回率即可。最后，将所有 $R_n - R_{n-1}$ 与 $P_n$ 相乘后相加即可得到AP值。
+	
+	首先，对于每个类别，模型需要根据预测结果和真实标注来计算AP值。具体而言，模型会对每个预测框计算一个置信度得分，然后按照置信度得分的高低对预测框进行排序。接下来，模型会从置信度得分最高的预测框开始，计算精度和召回率，其中精度指的是检测结果中正确预测的目标数量占检测结果总数的比例。例如，如果一个类别的检测结果中有5个预测正确的目标，而总共有10个检测结果，那么该类别的精度就是0.5。召回率指的是在所有真实目标中被正确检测到的目标数量占所有真实目标的比例。例如，如果一个类别有10个真实目标，算法检测到了其中8个，那么该类别的召回率就是0.8，可以根据这些计算得到一个精度-召回曲线。
+	
+	接下来，需要根据精度-召回曲线计算每个类别的平均精度（AP）。计算AP的过程可以通过对精度-召回曲线进行积分得到。但是，在实际计算中，通常采用一种简化的方式，即对召回率进行插值，并将插值点的精度取最大值。例如，可以在召回率为0、0.1、0.2、...、1这11个点上计算插值精度，并将这些精度取最大值作为该点的AP值。然后，对这些AP值进行平均，即可得到该类别的平均精度（AP）。
+	
+	最后对所有类别的AP值求平均：对于多个类别的目标检测任务，需要将所有类别的AP值进行平均得到mAP值。具体而言，将所有类别的AP值相加，然后除以类别总数得到mAP值。
+	
+	总而言之，mAP是目标检测任务中常用的精度指标之一，它通过计算所有类别的AP值求平均来综合反映模型在多个类别上的检测和识别性能，可以用于评估模型的整体精度，mAP值越高说明模型的整体精度越高。
+	
+	\subsubsection{速度指标FPS}
+	目标检测中的FPS（Frames Per Second）指标是衡量目标检测算法速度的重要指标。它表示算法每秒钟可以处理的图像帧数，即在单位时间内算法可以处理的图像数量。通常，越高的FPS值表示算法的处理速度越快。在实际应用中，fps 是一个非常关键的指标，因为它直接决定了算法能够处理多快的数据流。如果算法的处理速度不能满足实际需求，那么它就无法应用于实际场景中。因此，在实际应用中，除了考虑算法的精度，还需要考虑算法的速度和效率，以便在满足精度要求的前提下，提高算法的处理速度和效率，从而实现实际应用的需求。
+	
+	在目标检测中，FPS与许多因素有关。其中，一些主要因素包括以下几个方面：
+	
+	1.硬件设备：计算机硬件设备的性能是影响FPS的重要因素。比如，处理器、显卡、内存等硬件的质量和性能直接影响算法的运行速度和效率。
+	
+	2.检测器的复杂度：不同的目标检测算法和模型的复杂度不同，这也会对FPS产生影响。比如，一些高效的目标检测算法可以在保证一定准确率的情况下，实现较高的FPS值。
+	
+	3.图像大小：处理大尺寸的图像需要更多的计算资源和时间，因此会降低算法的FPS。相反，处理小尺寸的图像可以提高算法的FPS。
+	
+	总而言之，在目标检测中，FPS也是一个重要的指标。因此，在选择目标检测模型时，除了考虑精度和召回率等指标外，还需要综合考虑模型的FPS表现。
+	
+%	\subsection{本章小结}
+%	本章主要介绍了本文的相关技术。第 2.1 节目标检测的主流模型中，简单介绍了目标检测的二阶段方法，然后分别介绍了目标检测的一阶段方法的Retina-Net、SSD和YOLO算法，通过对比分析说明本文选择的模型为YOLOv8，并详细的介绍了YOLOv8算法；第 2.2 节模型轻量化方法中分别从网络结构轻量化和模型压缩两方面介绍了模型轻量化方法，并说明了本文中使用的轻量化方法；第 2.3 节深度网络模型在Android设备上的部署框架中，分别介绍了TensorFlow Lite、PyTorch Mobile和NCNN框架，然后通过对比选择了NCNN框架；第 2.4 节目标检测的性能指标中，详细介绍了目标检测的精度指标mAP值和速度指标FPS值。
+	
+	\newpage
+	\section{边缘设备上目标检测系统的设计与测试}
+	\subsection{总体实验流程}
+	总体实验流程如图\ref{t31}所示。
+	\begin{figure}[h]
+		\centering
+		\includegraphics [width=0.99\linewidth]{3.1}
+		\caption{总体实验流程}
+		\label{t31}
+	\end{figure}
+	
+	整个实验的流程可以分为三部分：
+	
+	1.下载YOLOv8工程和YOLOv8标注格式的数据集，然后修改YOLOv8的部分网络结构之后利用数据集对模型进行训练，将训练好的YOLOv8模型从PyTorch格式转化为ONNX格式，然后进行模型简化，将简化后的模型从ONNX格式转换为可以在Android上部署的NCNN格式，最后进行模型优化，输出为半精度浮点数格式，得到本文最终在Android端部署的YOLOv8模型。
+	
+	2.将YOLOv8NCNN框架的YOLOv8推理部分和YOLOXNCNN框架的用户界面和功能实现部分相结合，利用上述的YOLOv8模型实现YOLOv8在Android端的目标实时检测、图片检测以及将图片检测结果保存至相册的功能，其中目标实时检测会自动计算FPS值；同时该APP也支持CPU和GPU的切换，最后还对模型切换部分进行了适当修改，让不同数据集训练的YOLOv8模型可以同时部署到Android端，可以通过用户界面自由的切换模型进行检测。
+	
+	3.下载COCO数据集，利用验证集的JSON文件取出500张图片的信息以及标注信息Ground Truth，利用图片信息中的图片名称到图片数据文件夹中取出对应的500张图片，然后发送至手机端作为本文模型性能测试的图片数据；修改图片检测功能，使其在读取图片时保存图片名称，同时支持图片多选功能，每次至多选择100张图片。在检测完成后将检测结果以文本文档的格式输出到手机端的文档路径，文件名与图片名对应，同时将每张图片的检测时间写到手机文档路径下的run\_time.txt
+	文档。最后将500张图片全部检测完成后将检测结果和检测时间发送至PC端并将检测结果转换成JSON文件，与上述的Ground Truth真实值一起在python中利用pycocotools工具计算模型部署到Android端的mAP值，然后利用保存检测时间的文档可以计算数据集中图片的平均检测时间，并将其作为FPS值。
+	
+	\subsection{移动端的YOLOv8模型}
+	该部分主要介绍本文如何得到一个可部署到移动端的YOLOv8模型，在进行后续的操作前需要先下载YOLOv8工程并安装好所需的依赖库，同时YOLOv8的使用需要Python版本不低于3.7以及PyTorch版本不低于1.7。
+	
+	\subsubsection{YOLOv8模型结构修改}
+	由于YOLOv8网络模型在后续的模型转化过程中，并不是所有的层都能够被直接转换为 NCNN 中的层。有些层可能需要使用自定义层来实现，或者需要进行额外的转换和优化才能在 NCNN 上运行。所以需要对YOLOv8的网络进行一些修改来保证后续部署到NCNN框架上能够正常运行。
+	
+	1.change C2f split to slice
+	
+	YOLOv8在处理网络中的数据时，使用了split操作将数据分成几个部分进行处理，而split操作在NCNN中没有直接对应的实现方式，所以需要使用另一个与split作用相似的操作slice。
+	
+	split操作是将一个tensor沿着指定的维度分割成若干个子tensor，每个子tensor具有相同的shape。它通常用于在训练神经网络时将数据batch分成多个部分，以便于在GPU上并行处理。split操作的输出是一个元素个数等于指定数量的tensor列表。
+	
+	slice操作是从一个tensor中按照指定的索引范围截取一个子tensor。与split不同的是，slice操作可以在一个tensor中选择不同的子区域，而且每个子tensor的shape也可以不同。这通常用于在网络的某些层中进行特定形式的数据处理，比如图像的裁剪或变形。slice操作的输出是一个tensor。
+	
+	而slice操作可以用ncnn::Crop层实现，可以在不产生额外内存开销的情况下进行张量的分割，这与使用 Reshape 和 Crop 两个层来实现 split 操作相比，更加高效。因此，在后续的模型转换过程中，使用 slice 操作替换 split 操作，可以提高模型的性能和效率。
+	
+	2.change class Detect output
+	
+	YOLOv8的Detect层负责将网络的特征图转换为检测框的位置和置信度信息，但是在 ONNX 转换为 NCNN 的过程中，并不会自动转换 Detect 层，需要使用 NCNN 的自定义层功能，通过编写自定义层来实现 Detect 层的功能，所以在进行模型转换前还需要修改Detect层的输出。
+
+	同时，为了模型能够正常进行训练和验证，可以定义一个export属性，默认为False，在模型从PyTorch格式转换成ONNX格式前令export等于True。当export等于False时正常使用Detect层来将网络的特征图转换为检测框的位置和置信度信息；而当export等于True时，则使用修改后的Detect层来进行模型格式转换。
+	
+	\subsubsection{YOLOv8模型训练}	
+	1.数据准备：下载可用于YOLOv8模型训练的数据集，包括图像和标注信息。由于本文主要研究深度网络模型在Android端部署的技术路线，对数据集或者说检测目标没有特别的要求，因此本文主要使用的数据集就是比较常用的COCO数据集。
+
+	2.配置文件：YOLOv8的训练需要一个配置文件yaml，这个配置文件描述了模型的架构和训练参数，包括学习率、优化器、批大小等，这些参数的选择对训练过程和模型性能都有很大的影响。
+	
+	3.模型选择：
+	YOLOv8提供了几种不同的模型大小(YOLOv8n、YOLOv8s、YOLOv8m、YOLOv8l、YOLOv8x)，其中N/S 和 L/X 两组模型只是改了缩放系数，较小的模型具有较少的卷积层和参数，较大的模型则具有更多的卷积层和参数，但是 S/M/L 等骨干网络的通道数设置不一样，没有遵循同一套缩放系数，如此设计的原因应该是同一套缩放系数下的通道设置不是最优设计。由于本文是需要将YOLOv8网络部署到Android端，因此选择了较小的三种模型YOLOv8n、YOLOv8s以及YOLOv8m。
+	
+	4.模型训练和评估：在完成上述步骤后可以直接开始YOLOv8网络的训练，训练完成后还需要对模型进行评估，评估过程主要是通过计算模型在验证集上的mAP指标来完成，最终可以得到一个PyTorch文件，这个就是训练好的YOLOv8模型，可以直接使用这个模型进行目标检测，但是Pytorch格式的文件无法部署到Android端，还需要在后续进行格式上的转换。
+	
+	\subsubsection{模型格式转换}
+	为了将YOLOv8部署到Android端，需要将YOLOv8模型转换成NCNN格式，但是模型无法直接从PyTorch格式转换成NCNN格式，所以需要先将YOLOv8模型从PyTorch格式转换成ONNX格式，然后利用ONNXsim工具对导出的ONNX模型进行简化去冗余，再将简化后的ONNX模型转换成NCNN格式，最后对NCNN格式的模型进行优化并导出为fp16格式。具体过程如下：
+	
+	1.PyTorch转换成ONNX
+	
+	YOLOv8工程中提供了PyTorch格式导出为ONNX格式的工具，按照前面的方法修改完YOLOv8的网络结构之后，利用YOLOv8工程中的export工具可以直接将训练好的模型直接导出ONNX格式并输出到同一路径下。
+	
+	2.模型简化
+	
+	安装ONNXsim，通过使用ONNXSim工具对模型进行简化，以便减少模型的复杂性、大小和计算需求，这通常包括去除一些冗余或不必要的操作，从而使模型更加高效和易于部署，最终帮助加速模型的推理速度、减少内存使用、降低功耗等，从而使模型更加适用于实际应用场景。
+	
+	3.ONNX转换成NCNN
+	
+	本文的该部分是在Ubuntu上面完成，在进行ONNX格式转NCNN格式之前需要先编译onnx2ncnn工具。
+	首先，需要从官网下载 NCNN，然后将下载的 NCNN 解压到本地目录。同时，onnx2ncnn工具的编译 需要用到 Protobuf 和 CMake，所以需要先安装这两个依赖。安装完成后
+	进入到 ONNX2NCNN 的根目录来编译 ONNX2NCNN 工具，编译完成后，会生成一个名为 onnx2ncnn 的可执行文件。利用onnx2ncnn工具可以直接将ONNX格式的模型转换成NCNN格式(.param和.bin)文件。
+	
+	4.模型优化
+
+	通常情况下，深度学习模型中的参数和激活值是使用32位浮点数（即fp32）进行存储和计算的，而16位浮点数（即fp16）则只使用一半的存储空间，可以显著减少模型在内存和带宽上的开销。
+	虽然将精度降低到fp16会导致一定的数值误差，但对于目标检测这类对数值精度要求不高的应用场景，使用fp16可以在不影响模型性能的情况下显著提高推理速度和降低能耗。
+	
+	同时，在完成上述的编译后，除了会生成onnx2ncnn工具之外，还会生成一些其他的NCNN工具，比如NCNN模型优化工具ncnnoptimize和NCNN模型量化工具quantize。其中ncnnoptimize可以进行模型压缩、精度缩减和结构优化等操作，以提高模型的性能和部署效率。利用该工具对NCNN模型进行优化并使用半精度浮点数fp16来进行模型参数储存，得到本文最终部署到Android端的YOLOv8模型。
+	
+	\subsection{模型在Android设备上的部署}
+	\subsubsection{模型推理}
+	将YOLOV8NCNN框架的模型推理部分与YOLOXNCNN框架的用户界面部分结合之后对YOLOv8模型进行推理，最终将YOLOv8模型部署到Android端，并同时实现摄像头实时检测、图片检测以及图片检测结果保存功能。
+	
+	具体来说，YOLOv8NCNN和YOLOXNCNN这两个框架的推理部分都是基于C++实现的，只是它们的算法实现方式以及在一些细节上有一些不同，包括但不限于以下方面：
+	
+	1.网络结构：YOLOv8NCNN和YOLOXNCNN的网络结构不同，YOLOv8NCNN采用了改进的CSPDarknet作为主干网络，YOLOXNCNN则使用了PP-YOLOv2。
+	
+	2.特征图的生成和处理：YOLOv8NCNN和YOLOXNCNN的特征图的生成和处理方法也有所不同，包括特征图的尺寸、通道数、缩放比例等等。
+	
+	3.前后处理：在目标检测的推理过程中，YOLOv8NCNN和YOLOXNCNN也有不同的前后处理方式，例如NMS的实现方式、anchor的生成方式等。
+	
+	同时，YOLOv8NCNN和YOLOXNCNN这两个框架的用户界面及功能都是基于Java实现的，但是YOLOv8NCNN框架只实现了摄像头实时检测，而YOLOXNCNN框架还实现了图片检测和结果保存。因此，通过对比YOLOv8NCNN和YOLOXNCNN的实现细节，并将YOLOv8NCNN的推理部分的代码实现替换到YOLOXNCNN框架中。替换完成后，对后处理的置信度阈值和NMS的IOU阈值进行调整，然后进行充分的测试和评估，最终设置置信度阈值为0.3，NMS的IOU阈值为0.4。
+	
+	\subsubsection{部署多种模型}
+	YOLOv8NCNN框架本身支持部署多个YOLOv8模型，包括YOLOv8n、YOLOv8s以及YOLOv8m等等，但是部署的这些模型检测目标的类别数量和种类名称都必须是相同的，因为在NCNN框架中，目标检测的类别数量是一个常量，而种类名称就是一个长度为类别数量的一维数组，保存了每个类别的名称。
+	
+	因此，若想同时部署检测目标类别数量或者种类名称不同的YOLOv8模型，则只需要将上述的类别数量定义为一个一维数组常量，对应的保存着每个模型检测的类别数量；同时将种类名称定义为一个二位数组，对应的保存着每个模型检测的种类名称。最后修改相关的类和相关的函数，使得程序在运行时会根据当前选择的模型来进行目标检测以及显示对应的检测结果。
+	
+	\subsection{Android设备上的模型测试}
+	将在PC端训练好的YOLOv8模型部署到Android端前，进行了模型格式转换、模型简化、模型优化等操作，同时由于Android设备资源限制，因此需要测试YOLOv8模型在Android设备上的性能表现。
+	
+	\subsubsection{精度测试}
+	精度测试即为测试YOLOv8模型在Android端部署后进行目标检测的mAP值。由于在Android端没有直接测试目标检测模型的mAP值的方法，需要在Android端对数据集中的图片一张张进行测试并将结果保存，然后将所有的检测结果发送至PC端，与数据集中的GroundTruth一起利用pycocotools工具来计算该模型部署到Android端的mAP值。测试mAP值的整体流程比较繁琐，因此本文只选取了COCO验证集十分之一的数据(500张图片)来进行检测和计算mAP值。具体步骤如下：
+	
+	1.选取COCO验证集中保存着标注信息的JSON文件的前500份数据作为计算mAP值的真实值，同时取出相应的图片信息。
+
+	2.利用上述图片信息中的图片名称在COCO验证集的5000张图片中筛选出对应的500张图片作为测试图片，然后发送至手机端等待检测。
+
+	3.修改图片检测功能，使其在读取图片时会读取图片名称，同时启用图片多选功能，每次至多选择100张图片进行检测，但只会在所有图片检测完成后显示最后一次的检测结果，然后在检测过程中添加记录每次检测结果的功能，即每张图片检测完成后会将其检测结果以txt文档的格式写到手机文档目录下的路径，具体来说是将每张图片检测到的物体标签、置信度以及预测框的位置(左上角x坐标、左上角y坐标、宽度w、高度h)信息写入以图片名称命名的txt文档，同时将每张图片的检测时间写入run\_time.txt文档，单位是ms，最后在将500张图片全部检测完成后将检测结果发送至PC端来进行mAP值的计算。
+	
+	
+	4.将保存着检测结果的500个txt文档转化为计算mAP值所需的JSON文件作为预测值，然后利用上述保存真实值的JSON文件和保存预测值的JSON，在pycharm上面调用pycocotools库来进行mAP值的计算。
+	
+	\subsubsection{速度测试}
+	对于Android设备上YOLOv8模型的速度测试分为三种方式：单张图片检测时间、多张图片检测的平均时间以及摄像头实时检测的FPS值。
+	
+	具体来说，对于单张图片的检测比较简单，检测一张图片，然后可以直接观察这张图片的检测时间，非常的直观；对于多张图片的检测就是利用上述精度测试中保存的run\_time.txt文档来计算检测这500张图片的平均时间，也可以用1000除以平均时间并将其作为每秒平均处理的图片的数量FPS值；最后就是摄像头实时检测，其在检测时除了会显示检测到的物体的名称、置信度和预测框，还会显示实时检测的FPS值，因此也可以非常直观的观察到模型的检测速度。同时，上述所有的步骤均可以通过切换不同模型、CPU和GPU来进行对比和分析。
+	
+%	\subsection{本章小结}
+%	小结
+%	
+	\newpage
+	\section{测试与验证}
+	以下测试使用的手机型号是iQOO 10，处理器为3.2GHz第一代骁龙8+八核，运行内存为12GB，手机存储为256GB。
+	\subsection{不同模型的mAP值和FPS值测试及对比}
+	本文这部分测试了YOLOv8n、YOLOv8s和YOLOv8m部署到Android端分别使用CPU和GPU的mAP值和FPS值，具体结果如下表\ref{b2}所示。其中测试数据使用的是COCO 2017验证集标注文件的前500个数据，每次测试结果中平均检测时间和FPS均有一定变化，下表中是测试两次并取平均的结果，而mAP值在每次测试中均保持不变。表\ref{b5}是YOLOv8作者提供的各种YOLOv8模型在PC端的表现。
+	
+	\begin{table}[h]
+		\centering
+		\caption{不同模型的mAP和FPS对比}\label{b2}
+		\begin{tabular}{c|c|c|c}
+			\hline
+			&  平均检测时间/ms \qquad & FPS \quad & mAP(50-95) \quad \\
+			\hline 
+			 YOLOv8n/CPU \quad & 24.59 & 40.66 & 20.06\% \\
+		
+			YOLOv8s/CPU &  38.09	& 26.25 &  28.07\% \\
+			
+				YOLOv8m/CPU & 65.69 & 15.22 & 35.10\% \\
+		
+			YOLOv8n/GPU &  42.34	& 23.62 &  19.64\% \\
+			
+				YOLOv8s/GPU & 51.27 & 19.50 & 28.78\% \\
+			
+			YOLOv8m/GPU &  61.67	& 16.22 & 35.21\% \\
+			\hline
+		\end{tabular}
+	\end{table}
+
+	\begin{table}[h]
+		\centering
+		\caption{YOLOv8模型在PC端的表现}\label{b5}
+		\begin{tabular}{c|c|c|c}
+			\hline
+			模型&  Speed(CPU ONNX)/ms \qquad & Speed(A100 TensorRT)/ms* \quad & mAP(50-95)** \quad \\
+			\hline 
+			YOLOv8n \quad & 80.4 & 0.99 & 37.3\% \\
+			
+			YOLOv8s &  128.4	& 1.20 &  44.9\% \\
+			
+			YOLOv8m & 234.7 & 1.83 & 50.2\% \\
+			
+			YOLOv8l &  375.2	& 2.39 &  52.9\% \\
+			
+			YOLOv8x & 479.1 & 3.53 & 53.9\% \\
+			\hline
+		\end{tabular}
+	\end{table}
+	*Speed averaged over COCO val images using an Amazon EC2 P4d instance.
+	
+	**mAPval values are for single-model single-scale on COCO val2017 dataset.
+	
+	由测试结果可知，模型部署到Android端后其mAP值相较于PC端均有不少下降，这也在意料之中，因为在模型转换的过程对模型进行了一些简化操作，使模型提升在Android端的推理速度的同时也会降低模型一定的精度。同时，通过对比三种模型分别使用CPU和GPU的表现来看，虽然GPU通常比CPU具有更高的并行处理能力，但是在YOLOv8n模型在使用GPU时不仅mAP值降低了0.42\%，其速度甚至降低了将近一半，其中可能的原因是YOLOv8模型比较简单，GPU的并行计算能力可能无法得到充分利用，从而导致性能下降；与之相反的是YOLOv8m模型，其使用GPU相较于使用CPU时，其mAP值提升了0.11\%，FPS也提升了1；而介于这两种模型之中的YOLOv8s模型在使用GPU时mAP值提升了0.71\%，但是FPS值降低了6.75。最后对这三种模型的性能进行对比，YOLOv8n模型最小，其检测速度最快，但是精度最低；而YOLOv8m模型最大，其检测速度最低，但是精度最高；YOLOv8s模型介于两者之中，结果比较合理。
+	
+	除此之外，本文还寻找了两种其他部署在Android设备上的目标检测模型的性能表现来进行对比，第一个是 TensorFlow Lite官方提供的目标检测模型，其测试结果以及说明如下表\ref{b3}所示。
+	
+	\begin{table}[h]
+	\centering
+	\caption{每个EfficientDet-Lite模型的性能相互比较}\label{b3}
+	\begin{tabular}{c|c|c|c}
+		\hline
+	Model architecture	&Size(MB)*	&Latency(ms)**	&Average Precision***\\
+	\hline
+	EfficientDet-Lite0	&4.4	&37	&25.69\%\\
+	EfficientDet-Lite1	&5.8	&49	&30.55\%\\
+	EfficientDet-Lite2	&7.2	&69	&33.97\%\\
+	EfficientDet-Lite3	&11.4	&116	&37.70\%\\
+	EfficientDet-Lite4	&19.9	&260	&41.96\%\\
+		\hline
+	\end{tabular}
+	\end{table}
+
+	* Size of the integer quantized models.
+	
+	** Latency measured on Pixel 4 using 4 threads on CPU.
+	
+	*** Average Precision is the mAP (mean Average Precision) on the COCO 2017 validation dataset.
+	
+	第二个是Github上一个开源的项目，作者将YOLOv5s部署到Android端并基于Xiaomi Mi11进行了测试，同时他们还通过使用NNAPI (qti-dsp)来加速推理过程，并将计算卸载到Hexagon DSP，其测试结果如下表\ref{b4}所示。
+	
+	\begin{table}[h]
+		\centering
+		\caption{yolov5s在android上的性能}\label{b4}
+		\begin{tabular}{|c|c||c|c|}
+			\hline
+			delegate&  Latency(ms) & device, model, delegate &Accuracy(mAP) \\
+			\hline 
+			None (CPU,fp32) & 249 & host GPU (Tflite + PyTorch, fp32) & 27.8\%	 \\
+			\hline
+			NNAPI (qti-gpu, fp32) &  156	&host CPU (Tflite + PyTorch, int8) &  26.6\%	 \\
+			\hline
+			NNAPI (qti-gpu, fp16) &  92	& NNAPI (qti-gpu, fp16) & 28.5\% \\
+			\hline
+			None (CPU,int8) &  95	& CPU (int8) &  27.2\% \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	通过对比YOLOv8模型和上述两种模型在Android的速度和mAP值来看，TensorFlow Lite官方提供的目标检测模型中最大的两种模型的mAP要高于YOLOv8n/s/m，但是其检测速度甚至要比YOLOv8m慢不少，由于它们测试使用的设备是Pixel 4并且使用了 4 线程的CPU，因此对于其模型与YOLOv8模型的检测速度的对比并不是非常清晰。而YOLOv5s模型在Android端的表现相较于YOLOv8模型来说，不管是在检测速度上还是检测精度上均要落后一点。
+	
+	总体上来说，YOLOv8模型不管是在PC端还是部署到Android端均有着非常不错的性能。
+	
+	\subsection{摄像头实时检测}
+	YOLOv8模型部署到Android端分别使用CPU和GPU进行实时目标检测的效果如下图\ref{t421}和图\ref{t422}所示。
+	
+	\begin{figure}[h]
+	\centering
+			\begin{minipage}{0.28\linewidth}
+				\centering
+				\includegraphics[width=\linewidth]{ncpu2}
+				%\caption{YOLOv8n使用CPU实时检测}
+				%\label{ncpu2}%文中引用该图片代号
+			\end{minipage}
+			\begin{minipage}{0.28\linewidth}
+				\centering
+				\includegraphics[width=\linewidth]{scpu2}
+				%\caption{YOLOv8s使用CPU实时检测}
+				%\label{scpu2}%文中引用该图片代号
+			\end{minipage}
+			\begin{minipage}{0.28\linewidth}
+				\centering
+				\includegraphics[width=\linewidth]{mcpu2}
+				%\caption{YOLOv8m使用CPU实时检测}
+				%\label{mcpu2}%文中引用该图片代号
+			\end{minipage}
+			\caption{YOLOv8模型使用CPU实时检测结果对比}
+			\label{t421}%文中引用该图片代号
+\end{figure}
+
+	可以看出，越大的YOLOv8模型可以检测出更多的物体，而且其检测的位置框的整体置信度也要更高，但是越小的YOLOv8模型进行实时检测的FPS值更高。同时，在使用GPU进行实时检测时，相较于使用CPU，YOLOv8n模型和YOLOv8s模型检测的FPS值均有所下降，而YOLOv8m模型进行实时检测的FPS有所提升，这与上述mAP值和FPS值测试中得到的结论一致。但是本文测试的所有模型使用CPU和GPU时实时目标检测的FPS值均要低于使用数据集图片测试计算得到的FPS值，这可能是由于以下几个原因导致的：
+	
+	\begin{figure}[h]
+		\centering
+%		\begin{minipage}{0.28\linewidth}
+%			\centering
+%			\includegraphics[width=\linewidth]{ncpu2}
+%			%\caption{YOLOv8n使用CPU实时检测}
+%			%\label{ncpu2}%文中引用该图片代号
+%		\end{minipage}
+%		\begin{minipage}{0.28\linewidth}
+%			\centering
+%			\includegraphics[width=\linewidth]{scpu2}
+%			%\caption{YOLOv8s使用CPU实时检测}
+%			%\label{scpu2}%文中引用该图片代号
+%		\end{minipage}
+%		\begin{minipage}{0.28\linewidth}
+%			\centering
+%			\includegraphics[width=\linewidth]{mcpu2}
+%			%\caption{YOLOv8m使用CPU实时检测}
+%			%\label{mcpu2}%文中引用该图片代号
+%		\end{minipage}
+%		\caption{YOLOv8模型使用CPU实时检测结果对比}
+%		\label{t421}%文中引用该图片代号
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{ngpu2}
+			%\caption{YOLOv8n使用CPU实时检测}
+			%\label{ngpu2}%文中引用该图片代号
+		\end{minipage}
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{sgpu2}
+			%\caption{YOLOv8s使用CPU实时检测}
+			%\label{sgpu2}%文中引用该图片代号
+		\end{minipage}
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{mgpu2}
+			%\caption{YOLOv8m使用CPU实时检测}
+			%\label{mgpu2}%文中引用该图片代号
+		\end{minipage}
+		\caption{YOLOv8模型使用GPU实时检测结果对比}
+		\label{t422}%文中引用该图片代号
+	\end{figure}
+
+	1.摄像头的输入是一个连续的视频流，而非静态图片。这意味着每个时间步骤（通常是1/30或1/60秒）都需要检测一个新的图像，这需要比对一张静态图片进行检测更多的计算。
+	
+	2.摄像头的输入通常会有更高的分辨率，即使将输入的分辨率降低到与静态图片相同，因为它需要连续进行处理，所以它需要更多的计算资源。
+	
+	3.摄像头实时检测的输出需要进行绘图操作，而上述图片检测没有计算绘制预测框的时间，因此这也会在一定程度上使得实时检测的FPS值更低，尤其是在检测到过多的物体的情况下。
+	
+	综上所述，即使使用相同的模型，通过对静态图片进行检测计算出的FPS值和实时目标检测的FPS值可能会有所不同。因此，在进行模型性能评估时，应该考虑模型的输入数据类型和性质。
+	
+	\vskip 3cm
+	\subsection{图片检测}
+	YOLOv8模型部署到Android端分别使用CPU和GPU进行图片检测的效果如下图\ref{t431}和图\ref{t432}所示，检测时间如下表\ref{b1}所示，其中对单张图片检测的时间是进行了三次测试之后取平均的结果。
+	
+	\begin{figure}[h]
+		\centering
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{ncpu}
+			%\caption{YOLOv8n使用CPU的检测结果}
+			%\label{ncpu}%文中引用该图片代号
+		\end{minipage}
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{scpu}
+			%\caption{YOLOv8s使用CPU的检测结果}
+			%\label{scpu}%文中引用该图片代号
+		\end{minipage}
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{mcpu}
+			%\caption{YOLOv8m使用CPU的检测结果}
+			%\label{mcpu}%文中引用该图片代号
+		\end{minipage}
+		\caption{YOLOv8模型使用CPU进行图片检测结果对比}
+		\label{t431}%文中引用该图片代号
+	\end{figure}
+		\begin{figure}[h]
+		\centering
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{ngpu}
+			%\caption{YOLOv8n使用CPU的检测结果}
+			%\label{ngpu}%文中引用该图片代号
+		\end{minipage}
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{sgpu}
+			%\caption{YOLOv8s使用CPU的检测结果}
+			%\label{sgpu}%文中引用该图片代号
+		\end{minipage}
+		\begin{minipage}{0.28\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{mgpu}
+			%\caption{YOLOv8m使用CPU的检测结果}
+			%\label{mgpu}%文中引用该图片代号
+		\end{minipage}
+		\caption{YOLOv8模型使用GPU进行图片检测结果对比}
+		\label{t432}%文中引用该图片代号
+	\end{figure}
+	\begin{table}[h]
+		\centering
+		\caption{不同模型检测单张图片的时间对比}\label{b1}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			单位/ms&  YOLOv8n & YOLOv8s &YOLOv8m \\
+			\hline 
+			CPU & 19.6194 & 39.4585 & 68.5239 \\
+			\hline
+			GPU &  37.0132	& 88.1489 &  132.392 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	从检查结果可以看出，越大的YOLOv8模型可以检测出更多的物体，但是检测的时间更慢，这与上述结论一致，但是在不同模型检测单张图片的时间上，YOLOv8n模型使用CPU和GPU检测单张图片的时间均比检测整个数据集的平均时间要更低，而YOLOv8s模型和YOLOv8m模型使用CPU和GPU检测单张图片的时间均比检测整个数据集的平均时间要更高，这可能是由于以下几个原因导致的：
+	
+	1.模型的复杂性和大小：对于较小的模型，例如最小的YOLOv8n模型，它的参数较少，计算量较小，因此对单张图片进行目标检测的检测时间可能比对500张图片进行检测的平均时间短。%此外，如果GPU支持低功耗模式，那么在使用小模型进行单张图片的目标检测时，GPU可能会进入低功耗模式，导致检测时间更短。
+	而对于较大的模型，例如YOLOv8s模型和YOLOv8m模型，它们的参数和计算量较多，因此对单张图片进行目标检测的检测时间可能比对500张图片进行检测的平均时间长。%此外，在使用GPU进行目标检测时，需要考虑GPU的显存是否足够，如果显存不足，GPU可能需要在内存和显存之间频繁地传输数据，导致检测时间更长。
+
+	2.GPU和CPU的使用情况：对于使用GPU进行目标检测的情况，GPU的使用情况也可能会影响检测时间。例如，当GPU在执行其他任务时，可能会降低对目标检测任务的优先级，导致检测时间变长。%另外，当GPU支持低功耗模式时，如果在检测单张图片时GPU进入低功耗模式，检测时间可能会更短。
+	
+	%3.数据加载和预处理时间：目标检测任务通常需要对输入数据进行加载和预处理，例如图像的缩放、归一化等。对于单张图片的目标检测任务，数据加载和预处理的时间可能会比对多张图片进行检测的平均时间更长，因为在处理单张图片时，每次需要加载和预处理的数据量较小。
+	
+	3.系统资源占用情况：对于Android系统而言，还有其他进程和任务也需要占用CPU、GPU等系统资源。在同时运行多个任务时，系统资源的分配可能会对单张图片目标检测的检测时间产生影响。
+	
+	综上所述，对于单张图片目标检测的检测时间差异，可能受到多个因素的影响。因此，在进行模型性能评估时，为了得出准确的结论，最好不要使用单张图片检测的检测时间来进行对比。
+	
+	\subsection{多模型测试}
+	除了使用COCO 2017数据集训练的YOLOv8模型以外，本文还测试了将另一个数据集MaskDataSet训练的YOLOv8n模型一起部署在Android端，该模型可以检测人们是否佩戴了口罩，其效果对比如下图\ref{t441}所示。
+	
+	\begin{figure}[h]
+		\centering
+		\begin{minipage}{0.35\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{441}
+			%\caption{YOLOv8n使用CPU的检测结果}
+			%\label{ncpu}%文中引用该图片代号
+		\end{minipage}
+		\begin{minipage}{0.35\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{442}
+			%\caption{YOLOv8s使用CPU的检测结果}
+			%\label{scpu}%文中引用该图片代号
+		\end{minipage}
+		\caption{不同数据集训练的YOLOv8n模型检测结果对比}
+		\label{t441}%文中引用该图片代号
+	\end{figure}
+
+	将多个数据集训练的模型同时部署的优点是可以提高系统的泛用性，通过训练不同模型来适应不同的场景。事实上，当应用场景对类别需求不是太大时，可以通过选择合适的数据集对所有的类别进行标注并训练成一个模型，例如COCO数据集标注了80个常用的物体。但是数据集标注的类别数目与模型的性能和准确度之间并非呈线性关系。在某些情况下，标注类别过多可能会导致模型过度拟合，从而降低模型的性能。此外，标注类别过多也意味着需要更多的人力和时间成本来完成标注工作。因此，当目标类别数量更多、目标之间的差异很大，或者存在不同的背景和环境条件，那么使用不同的模型来进行检测将会是一个更好的选择，这样可以更好地适应不同的场景和需求，同时还可以提高模型的准确性和性能。
+	
+	总而言之，本文提供了在Android系统上部署多种模型的方法，至于选择使用一个模型还是多个模型，以及类别数量的分配等问题，需要根据目标之间的差异和相似性，以及数据集的大小和特征等因素来进行权衡和取舍。
+	
+%	\subsection{本章小结}
+%	小结
+	
+	\newpage
+	\section{总结和展望}
+	\subsection{总结}
+	本文主要研究了YOLOv8模型在Android端的部署以及性能测试。
+	
+	首先，通过对目前主流的目标检测模型进行对比，选择了YOLOv8作为本文的目标检测模型，同时对YOLOv8网络结构中的C2f和Detect层进行了修改，然后利用修改后的模型来进行训练自己的目标检测模型；在PC端训练好YOLOv8模型后，将其从Pytorch格式转换为ONNX格式并对转换后的模型利用ONNXsim工具对其进行简化，去除冗余，然后利用onnx2ncnn工具将模型从ONNX格式转换成NCNN格式，最后利用ncnnoptimize工具将模型进行优化，并输出为fp16半精度浮点数格式。
+	
+	结合YOLOv8NCNN和YOLOXNCNN两个框架将YOLOv8部署到Android端，实现了摄像头实时检测、图片检测以及检测结果保存功能。同时，通过修改置信度阈值为0.3以及NMS的IOU阈值为0.4使模型达到了一个比较好的检测效果。最后，通过修改部署框架，可以使多个不同数据集训练的YOLOv8模型同时部署在Android上，在APP的用户界面中通过下拉栏选择对应模型进行检测。
+	
+	通过修改图片检测功能，使其在图片检测的选择图片时可以进行多选，至多选择100张图片，并将检测结果(类别、置信度和预测框坐标x，y，w，h)以及检测时间输出到Android端文档路径下的txt文档，检测结果的文档名称为检测图片的名称，检测时间保存至run\_time.txt文档中。同时在COCO数据集的验证集中选取500张图片进行测试，将500个保存着检测结果的txt文档和记录每次检测所需时间的run\_time.txt文档传输到PC端，并将检测结果转化成JSON文件，在Python中利用pycocotools库进行mAP值的计算。除此之外，通过对检测时间取平均值，可以得到模型对数据集的平均检测时间，并将该结果作为FPS值。
+	
+	最终可以得到本文的YOLOv8n模型在Android端使用CPU进行目标检测的FPS值为40.66，mAP值为20.06\%，使用GPU进行目标检测时的FPS值为23.62，mAP值为19.64\%；YOLOv8s模型在Android端使用CPU进行目标检测的FPS值为26.25，mAP值为28.07\%，使用GPU进行目标检测时的FPS值为19.50，mAP值为28.78\%；YOLOv8m模型在Android端使用CPU进行目标检测的FPS值为15.22，mAP值为35.10\%，使用GPU进行目标检测时的FPS值为16.22，mAP值为35.21\%。通过对比TensorFlow官方提供的模型以及YOLOv5模型在Android端的性能，YOLOv8模型在速度和精度上均有着非常不错的表现。
+	
+	\subsection{展望}
+	由于设备限制，本文只在本人的手机上进行了YOLOv8模型的性能测试，后续可以尝试使用不同性能的手机来进行测试，对比YOLOv8模型在不同性能的Android设备上的表现。
+	
+	同时，将YOLOv8模型部署到Android设备前可以进行一些轻量化操作，比如使用PyTorch中的prune方法对模型进行剪枝操作，或者利用NCNN中的quantize工具对模型进行量化。由于YOLOv8模型的网络结构比较复杂，对网络各部分的剪枝权值不容易确定，无法保证剪枝后模型的性能，对模型的量化也是一样，需要对轻量化后的模型进行反复的性能测试，而由于时间的限制，这部分只能留待后续进行。
+	
+	最后，在今年4月17日惊闻发布了 DETRs\textsuperscript{\cite{22}}，其在目标检测上的检测精度和检测速度比 YOLO系列的所有算法都要优秀。但由于此时本文写作已经开始，而且目前留给作者研究的时间和精力有限，因此没有深入研究DETRs在Android端部署的方法以及测试其在Android端的性能，留待后续进一步的探索。
+
+	\newpage
+	\phantomsection\addcontentsline{toc}{section}{参考文献}\tolerance=500 %将参考文献放进目录
+	\begin{thebibliography}{99}
+	\bibitem{1}Redmon, Joseph, and Ali Farhadi."YOLO9000: better, faster, stronger." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017.
+	
+	\bibitem{2}Zhang, Kaipeng, et al."Joint face detection and alignment using multitask cascaded convolutional networks." IEEE Signal Processing Letters 23.10 (2016): 1499-1503.
+	
+	\bibitem{3}Ren, Shaoqing, et al. "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks." IEEE Transactions on Pattern Analysis and Machine Intelligence 39.6 (2017): 1137-1149.
+	
+	
+	\bibitem{4}Dai, Yun, et al. "Automatic detection of diabetic retinopathy and age-related macular degeneration in digital fundus images." Investigative Ophthalmology \& Visual Science 59.9 (2018): 4128-4138.
+	
+	\bibitem{5}陈健健. 面向边缘计算环境的轻量级目标检测技术研究[D].上海交通大学,2019.DOI:10.27307/d.cnki.gsjtu.2019.004109.
+	
+%	\bibitem{article1}LeCun Y, Bengio Y, Hinton G.Deep learning[J].Nature, 2015, 521(7553): 436-444.
+	
+	\bibitem{article2}Girshick R, Donahue J, Darrell T, et al.Richfeature hierarchies for accurate object detection and semantic segmentation[C]//2014 IEEE Conference on Computer Vision and Pattern Recognition, June 23-28, 2014, Columbus, OH, USA. New York:IEEE Press, 2014: 580-587.
+	
+	\bibitem{article3}Girshick R. Fast R-CNN[C]//2015 IEEE International Conference on Computer Vision (ICCV), December 7-13, 2015, Santiago, Chile. New York: IEEE Press,2015: 1440-1448.
+	
+	\bibitem{article4}Ren S Q, He K M, Girshick R, et al.Faster R-CNN: towards real-time object detection with region proposal networks[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2017, 39(6):1137-1149.
+	
+	\bibitem{article5}He K M, Gkioxari G, Dollár P, et al.Mask R-CNN [C]//2017 IEEE International Conference on Computer Vision (ICCV), October 22-29, 2017, Venice, Italy. New York: IEEE Press, 2017: 2980-2988.
+	
+	\bibitem{article6}Redmon J, Divvala S, Girshick R, et al.You only look once: unified, real-time object detection[C]// 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), June 27-30, 2016, Las Vegas, NV, USA. New York: IEEE Press,2016: 779-788.
+	
+	\bibitem{article7}Redmon J, Farhadi A. YOLO9000: better, faster, stronger[C]//2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), July 21-26, 2017, Honolulu, HI, USA. New York: IEEE Press, 2017: 6517-6525.
+	
+	\bibitem{article8}Redmon J, Farhadi A. YOLOv3: an incremental improvement[EB/OL]. (2018-04-08) [2021-02-01].https://arxiv.org/abs/1804.02767.
+	
+	\bibitem{article9}Liu W, Anguelov D, Erhan D, et al.SSD: single shot MultiBox detector[M]//Leibe B, Matas J, Sebe N, et al. Computer vision-ECCV 2016. Lecture notes in computer science. Cham: Springer, 2016, 9905: 21-37.
+	
+	\bibitem{6}Howard A G, Zhu M, Chen B, et al. MobileNets: Efficient convolutional neural networks for mobile vision applications[J]. arXiv preprint arXiv:1704.04861, 2017.
+	
+	\bibitem{7}Zhang X, Zhou X, Lin M, et al. ShuffleNet: An extremely efficient convolutional neural network for mobile devices[J]. Proceedings of the IEEE conference on computer vision and pattern recognition, 2018: 6848-6856.
+	
+	\bibitem{8}Han S, Mao H, Dally W J. Deep compression: Compressing deep neural networks with pruning, trained quantization and huffman coding[J]. arXiv preprint arXiv:1510.00149, 2015.
+	
+	
+	\bibitem{9}Courbariaux M, Bengio Y, David J P. Binarynet: Training deep neural networks with weights and activations constrained to + 1 or −1[J]. arXiv preprint arXiv:1602.02830, 2016.
+	
+	\bibitem{10}Hinton G, Vinyals O, Dean J. Distilling the knowledge in a neural network[J]. arXiv preprint arXiv:1503.02531, 2015.
+	
+	%\bibitem{11}TensorFlow Lite. https://www.tensorflow.org/lite.
+	
+	%\bibitem{12}Caffe2. https://caffe2.ai/.
+	
+	%\bibitem{13}MXNet. https://mxnet.apache.org/.
+	
+	%\bibitem{14}Keras. https://keras.io/.
+	
+	\bibitem{15}Tencent. ncnn: a high-performance neural network inference framework optimized for mobile and other platforms. https://github.com/Tencent/ncnn.
+	
+	\bibitem{16}Howard A G, Zhu M, Chen B, et al. MobileNets: Efficient convolutional neural networks for mobile vision applications[J]. arXiv preprint arXiv:1704.04861, 2017.
+	
+	\bibitem{17}Zhang X, Zhou X, Lin M, et al. ShuffleNet: An extremely efficient convolutional neural network for mobile devices[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2018: 6848-6856.
+	
+	\bibitem{18}Redmon J, Divvala S, Girshick R, et al. You only look once: Unified, real-time object detection[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2016: 779-788.
+	
+	%\bibitem{23}https://github.com/ultralytics/ultralytics
+	%\bibitem{24}https://github.com/FeiGeChuanShu/ncnn-android-yolov8
+	%\bibitem{25}https://github.com/FeiGeChuanShu/ncnn-android-yolox
+	\bibitem{26}Lin T Y, Goyal P, Girshick R, et al. Focal loss for dense object detection[C]//Proceedings of the IEEE international conference on computer vision. 2017: 2980-2988.
+	
+	%\bibitem{19}https://blog.csdn.net/zyw2002/article/details/128732494
+	%\bibitem{27}https://pytorch.org/mobile/home/
+	%\bibitem{20}https://www.tensorflow.org/lite/models/modify/model\_maker/object\_detection
+	%\bibitem{21}https://github.com/lp6m/yolov5s\_android
+	\bibitem{22}Lv W, Xu S, Zhao Y, et al. Detrs beat yolos on real-time object detection[J]. arXiv preprint arXiv:2304.08069, 2023.
+	%\bibitem{}
+	\end{thebibliography}
+	
+	
+
+	\newpage
+	\begin{center}
+		\heiti\zihao{-2}\textbf{致谢}
+	\end{center}
+	\qquad 大学求学生涯即将告一段落，在此向给我帮助的老师、家人和同学致以最真挚的谢意。
+	
+	首先，我要感谢我的导师梅天灿老师。在论文选题时，老师鼓励我选择自己感兴趣的课题，并在研究过程中给予了很多帮助和建议。在我遇到问题和困难时，老师总是悉心指导和引导我，让我能够克服困难并取得进展。此外，老师还在论文写作和修改方面给予了我很多有益的意见和建议。在此衷心感谢梅老师对我的教导与帮助。
+	
+	其次，我要感谢我的家人。在整个大学求学期间一直给予我无私的支持和鼓励。你们的理解和支持让我能够专心学习和研究，感谢你们一直以来的陪伴和支持。
+	
+	同时，我要感谢我的同学们和朋友们。你们在生活和学习上的支持和帮助是我求学生涯中的重要力量。感谢你们一直以来的支持和陪伴。
+	
+	最后，我要感谢我的学校和所有教育工作者。感谢您们为我们提供了良好的学习环境和条件，感谢您们为我们传授了宝贵的知识和经验，感谢您们为我们打开了未来的大门。感谢教务处和各位老师的辛勤付出和关心，感谢你们让我有机会接受高质量的教育和研究。
+	
+	再次感谢所有支持和帮助过我的人，我将倍加珍惜所得到的一切，继续不断努力，为更好的未来奋斗。
+	
+	\phantomsection\addcontentsline{toc}{section}{致谢}\tolerance=500 %将致谢放进目录
+\end{document}
