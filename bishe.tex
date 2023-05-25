@@ -64,18 +64,21 @@
 
 
 %定义摘要环境
-\newcommand{\cnabstractname}{\zihao{-2}摘\quad 要}	% 定义中文摘要环境
+\newcommand{\cnabstractname}{\zihao{-2}摘\quad 要} % 定义中文摘要环境
 \newenvironment{cnabstract}{
 	\par\small
+	\vspace{0.8em} % 设置摘要标题的段前距离
 	\mbox{}\hfill{\bfseries \cnabstractname}\hfill\mbox{}\par
-	\vskip 2.5ex}{\par\vskip 2.5ex}
+	\vskip 2.5ex % 设置摘要标题与内容之间的垂直空距
+}{\par\vspace{0.5em}} % 设置摘要内容的段后距离
 
 
 \newcommand{\enabstractname}{\zihao{-2}\textbf{ABSTRACT}}	% 定义英文摘要环境
 \newenvironment{enabstract}{
 	\par\small
-	\mbox{}\hfill{\sectionef{\enabstractname}}\hfill\mbox{}\par 				% \sectionef：英文摘要使用Arial字体
-	\vskip 2.5ex}{\par\vskip 2.5ex} 
+	\vspace{0.8em} % 设置摘要标题的段前距离
+	\mbox{}\hfill{\sectionef{\enabstractname}}\hfill\mbox{}\par 				 \sectionef：英文摘要使用Arial字体
+	\vskip 2.5ex}{\par\vspace{0.5em}} 
 
 
 
@@ -153,6 +156,7 @@
 		
 		\noindent \heiti \zihao{-4}关键词：\songti \zihao{-4}目标检测；Android设备；YOLOv8模型；平均精度均值；帧率
 	\end{cnabstract}
+	\phantomsection\addcontentsline{toc}{section}{摘要}\tolerance=500 
 	
 	\newpage	
 	\begin{enabstract}{}
